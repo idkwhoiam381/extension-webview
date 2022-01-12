@@ -28,7 +28,6 @@ public class WebViewActivity extends Activity {
 	protected String[] urlWhitelist;
 	protected String[] urlBlacklist;
 	protected boolean useWideViewPort;
-	protected boolean mediaPlaybackRequiresUserGesture;
 	protected HaxeObject callback;
 	
 	protected int layoutResource;
@@ -46,7 +45,6 @@ public class WebViewActivity extends Activity {
 		urlWhitelist = extras.getStringArray(WebViewExtension.EXTRA_URL_WHITELIST);
 		urlBlacklist = extras.getStringArray(WebViewExtension.EXTRA_URL_BLACKLIST);
 		useWideViewPort = extras.getBoolean(WebViewExtension.EXTRA_USE_WIDE_PORT);
-		mediaPlaybackRequiresUserGesture = extras.getBoolean(WebViewExtension.EXTRA_MEDIA_PLAYBACK_REQUIRES_USER_GESTURE);
 		callback = WebViewExtension.callback;
 
 		getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -75,6 +73,7 @@ public class WebViewActivity extends Activity {
 			// Create the webview
 			webView = new WebView(this);
 			WebSettings webSettings = webView.getSettings();
+			webSettings.setMediaPlaybackRequiresUserGesture(false);
 			webSettings.setJavaScriptEnabled(true);
 			webSettings.setDomStorageEnabled(true);
 			webView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
